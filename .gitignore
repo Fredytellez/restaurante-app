@@ -1,0 +1,23 @@
+# Dependencias (son muy pesadas, cada quien las instala)
+node_modules/
+
+# Variables de entorno (contienen contraseñas)
+.env
+.env.local
+.env.production
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Next.js
+.next/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/

@@ -43,6 +43,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Servidor restaurante funcionando" })
 })
 
+const tablesRouter = require("./routes/tables")
+app.use("/api/tables", tablesRouter)
+
 // Inicializamos los sockets
 setupSockets(io)
 

@@ -38,4 +38,20 @@ router.get("/", async (req, res) => {
   }
 })
 
+// PATCH /api/music/:id
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params
+  const { status } = req.body
+  try {
+    const result = await pool.query(
+      "UPDATE music_requests SET status = $1 WHERE id = $2 RETURNING *",
+      [status, id]
+    )
+    req.io.to("dashboard").emit("music-updated", result.rows[0])
+    res.json({ success: true, data: result.rows[0] })
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message })
+  }
+})
+
 module.exports = router
