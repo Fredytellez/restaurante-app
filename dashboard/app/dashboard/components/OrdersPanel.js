@@ -21,7 +21,7 @@ export default function OrdersPanel({ orders, setOrders }) {
         prev.map(o => o.id === id ? { ...o, status } : o)
       )
     } catch (error) {
-      alert("Error al actualizar orden")
+      alert("Error al actualizar orden", error)
     }
   }
 

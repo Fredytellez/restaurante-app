@@ -13,7 +13,7 @@ export default function MusicPanel({ music, setMusic }) {
         prev.map(m => m.id === id ? { ...m, status } : m)
       )
     } catch (error) {
-      alert("Error al actualizar solicitud de música")
+      alert("Error al actualizar solicitud de música", error)
     }
   }
 
