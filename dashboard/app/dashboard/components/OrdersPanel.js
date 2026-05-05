@@ -39,7 +39,7 @@ export default function OrdersPanel({ orders, setOrders }) {
   return (
     <div>
       {active.length > 0 && (
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 33 }}>
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16 }}>
             Órdenes activas ({active.length})
           </h2>

@@ -57,7 +57,7 @@ export default function RequestsPanel({ requests, setRequests }) {
     <div>
       {/* Solicitudes pendientes */}
       {pending.length > 0 && (
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 33 }}>
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, color: "#333" }}>
             Pendientes ({pending.length})
           </h2>
