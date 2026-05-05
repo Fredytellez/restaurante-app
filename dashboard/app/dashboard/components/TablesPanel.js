@@ -33,7 +33,7 @@ export default function TablesPanel() {
         prev.map(t => t.id === id ? { ...t, status } : t)
       )
     } catch (error) {
-      alert("Error al actualizar mesa")
+      alert("Error al actualizar mesa", error)
     }
   }
 

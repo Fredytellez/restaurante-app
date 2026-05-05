@@ -29,7 +29,7 @@ export default function RequestsPanel({ requests, setRequests }) {
         prev.map(r => r.id === id ? { ...r, status } : r)
       )
     } catch (error) {
-      alert("Error al actualizar solicitud")
+      alert("Error al actualizar solicitud",error)
     }
   }
 
