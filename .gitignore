@@ -1,14 +1,11 @@
-# Dependencias (son muy pesadas, cada quien las instala)
+# Dependencias
 node_modules/
+.pnpm-store/
 
-# Variables de entorno (contienen contraseñas)
+# Variables de entorno
 .env
 .env.local
 .env.production
-
-# Archivos del sistema
-.DS_Store
-Thumbs.db
 
 # Next.js
 .next/
@@ -17,6 +14,10 @@ out/
 # Logs
 *.log
 npm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db
 
 # Editor
 .vscode/
