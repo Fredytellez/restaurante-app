@@ -1,52 +1,90 @@
 require("dotenv").config()
 
-const express      = require("express")
-const cors         = require("cors")
-const http         = require("http")
-const { Server }   = require("socket.io")
+const express    = require("express")
+const cors       = require("cors")
+const http       = require("http")
+const helmet     = require("helmet")
+const morgan     = require("morgan")
+const { Server } = require("socket.io")
 
-// Importamos las rutas
-const requestsRouter     = require("./routes/requests")
-const ordersRouter       = require("./routes/orders")
-const menuRouter         = require("./routes/menu")
-const musicRouter        = require("./routes/music")
+const { errorHandler } = require("./middlewares/errorHandler")
+const { generalLimiter } = require("./middlewares/rateLimiter")
 
-// Importamos la configuración de sockets
-const setupSockets = require("./sockets/index")
+const requestsRouter = require("./routes/requests")
+const ordersRouter   = require("./routes/orders")
+const menuRouter     = require("./routes/menu")
+const musicRouter    = require("./routes/music")
+const tablesRouter   = require("./routes/tables")
+const setupSockets   = require("./sockets/index")
+
+/* console.log("requestsRouter:", typeof requestsRouter)
+console.log("ordersRouter:",   typeof ordersRouter)
+console.log("menuRouter:",     typeof menuRouter)
+console.log("musicRouter:",    typeof musicRouter)
+console.log("tablesRouter:",   typeof tablesRouter) */
 
 const app    = express()
 const server = http.createServer(app)
 
-// Configuramos Socket.io
 const io = new Server(server, {
   cors: { origin: "*" }
 })
 
-// Middleware: permite que cualquier ruta acceda a 'io'
-// sin tener que importarlo en cada archivo de rutas
+// ── Middlewares globales ──────────────────────────
+// helmet agrega headers de seguridad automáticamente
+app.use(helmet())
+
+// morgan registra cada petición en la terminal
+// "dev" muestra: método, ruta, status, tiempo
+app.use(morgan("dev"))
+
+app.use(cors())
+app.use(express.json())
+
+// Límite general de peticiones
+app.use(generalLimiter)
+
+// Inyectamos io en cada request
 app.use((req, res, next) => {
   req.io = io
   next()
 })
 
-app.use(cors())
-app.use(express.json())
+// ── Rutas ─────────────────────────────────────────
+app.use("/api/requests",    requestsRouter)
+app.use("/api/orders",      ordersRouter)
+app.use("/api/menu",        menuRouter)
+app.use("/api/music",       musicRouter)
+app.use("/api/tables",      tablesRouter)
 
-// Registramos las rutas con su prefijo
-app.use("/api/requests", requestsRouter)
-app.use("/api/orders",   ordersRouter)
-app.use("/api/menu",     menuRouter)
-app.use("/api/music",    musicRouter)
-
-// Ruta de prueba para verificar que el servidor funciona
-app.get("/", (req, res) => {
-  res.json({ message: "Servidor restaurante funcionando" })
+// Ruta de salud del servidor
+app.get("/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "Servidor funcionando correctamente",
+    timestamp: new Date().toISOString()
+  })
 })
 
-// Inicializamos los sockets
+// Ruta no encontrada (404)
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    error: {
+      message: `Ruta '${req.originalUrl}' no encontrada`,
+      statusCode: 404
+    }
+  })
+})
+
+// ── Manejador global de errores ───────────────────
+// IMPORTANTE: debe ir siempre al final
+app.use(errorHandler)
+
 setupSockets(io)
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.NODE_ENV || 4000
 server.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`)
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`)
+  console.log(`🌍 Entorno: ${process.env.NODE_ENV || "development"}`)
 })
