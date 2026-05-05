@@ -1,0 +1,24 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Next.js
+.next/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
