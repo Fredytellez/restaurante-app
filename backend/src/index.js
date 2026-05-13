@@ -83,7 +83,7 @@ app.use(errorHandler)
 
 setupSockets(io)
 
-const PORT = process.env.NODE_ENV || 4000
+const PORT = process.env.PORT || 4000
 server.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`)
   console.log(`🌍 Entorno: ${process.env.NODE_ENV || "development"}`)
