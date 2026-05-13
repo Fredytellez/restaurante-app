@@ -1,0 +1,68 @@
+/* ── Bootstrap ───────────────────────────── */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* ── Variables BarLink ───────────────────── */
+:root {
+  --bl-bg:        #0a0a0f;
+  --bl-bg2:       #13131a;
+  --bl-bg3:       #1a1a24;
+  --bl-purple:    #d63af9;
+  --bl-cyan:      #00d4ff;
+  --bl-pink:      #ff2d78;
+  --bl-white:     #ffffff;
+  --bl-muted:     #8888aa;
+  --bl-border:    rgba(214, 58, 249, 0.2);
+  --bl-success:   #2a9d8f;
+  --bl-warning:   #e9c46a;
+  --bl-radius:    12px;
+  --bl-shadow:    0 4px 20px rgba(214, 58, 249, 0.1);
+  --bl-transition:all 0.2s ease;
+}
+
+/* ── Reset base ──────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bl-bg);
+  color: var(--bl-white);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ───────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bl-bg2); }
+::-webkit-scrollbar-thumb { background: var(--bl-purple); border-radius: 2px; }
+
+/* ── Utilidades globales ─────────────────── */
+.text-purple { color: var(--bl-purple); }
+.text-cyan   { color: var(--bl-cyan);   }
+.text-pink   { color: var(--bl-pink);   }
+.text-muted-bl { color: var(--bl-muted); }
+
+.bg-bl-2 { background-color: var(--bl-bg2); }
+.bg-bl-3 { background-color: var(--bl-bg3); }
+
+.border-bl {
+  border: 1px solid var(--bl-border) !important;
+}
+
+.btn-bl-primary {
+  background: linear-gradient(135deg, var(--bl-purple), var(--bl-pink));
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: var(--bl-transition);
+}
+
+.btn-bl-primary:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}

@@ -11,9 +11,9 @@ import MusicRequest from "../../components/MusicRequest"
 // La URL de tu backend
 const BACKEND_URL = "http://localhost:4000"
 
-export default function MesaPage({ params }) {
+export default function MesaPage() {
 
-  const {id: tableId} = useParams(params)
+  const {id: tableId} = useParams()
 
   // Estado del carrito: lista de productos seleccionados
   const [cart, setCart] = useState([])
@@ -55,107 +55,49 @@ export default function MesaPage({ params }) {
   const cartCount = cart.reduce((sum, i) => sum + i.quantity, 0)
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f9f9f9" }}>
-
-      {/* Encabezado */}
-      <header style={{
-        background: "#1a1a1a",
-        color: "white",
-        padding: "16px 20px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        position: "sticky",
-        top: 0,
-        zIndex: 100
-      }}>
-        <div>
-          <p style={{ margin: 0, fontSize: 12, opacity: 0.6 }}>Bienvenido a</p>
-          <h1 style={{ margin: 0, fontSize: 20, fontWeight: 600 }}>
-            Mi Restaurante
-          </h1>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{
-            background: "#333",
-            padding: "4px 12px",
-            borderRadius: 20,
-            fontSize: 14
-          }}>
-            Mesa {tableId}
-          </span>
-          {/* Botón del carrito con badge */}
-          <button
-            onClick={() => setCartOpen(true)}
-            style={{
-              background: "#e63946",
-              border: "none",
-              borderRadius: 20,
-              padding: "8px 16px",
-              color: "white",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: 14
-            }}
-          >
-            🛒 {cartCount > 0 ? cartCount : ""}
-          </button>
+    <div>
+      <header className="mesa-header">
+        <div className="d-flex justify-content-between align-items-center">
+          <div>
+            <p className="mesa-header__subtitle">Bienvenido a</p>
+            <h1 className="mesa-header__brand">
+              <span>Bar</span><span>Link</span>
+            </h1>
+          </div>
+          <div className="d-flex align-items-center gap-2">
+            <span className="mesa-header__badge">Mesa {tableId}</span>
+            <button
+              className="mesa-header__cart-btn"
+              onClick={() => setCartOpen(true)}
+            >
+              🛒 {cartCount > 0 ? cartCount : ""}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Tabs de navegación */}
-      <nav style={{
-        display: "flex",
-        background: "white",
-        borderBottom: "1px solid #eee",
-        position: "sticky",
-        top: 60,
-        zIndex: 99
-      }}>
+      <nav className="mesa-nav">
         {[
-          { key: "menu",     label: "🍽️ Menú"      },
+          { key: "menu",     label: "🍽️ Menú"       },
           { key: "requests", label: "🔔 Solicitudes" },
-          { key: "music",    label: "🎵 Música"     },
+          { key: "music",    label: "🎵 Música"      },
         ].map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            style={{
-              flex: 1,
-              padding: "14px 8px",
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-              fontSize: 14,
-              fontWeight: activeTab === tab.key ? 600 : 400,
-              color: activeTab === tab.key ? "#e63946" : "#666",
-              borderBottom: activeTab === tab.key
-                ? "2px solid #e63946"
-                : "2px solid transparent"
-            }}
+            className={`mesa-nav__tab ${activeTab === tab.key ? "mesa-nav__tab--active" : ""}`}
           >
             {tab.label}
           </button>
         ))}
       </nav>
 
-      {/* Contenido según el tab activo */}
-      <main style={{ padding: "16px", maxWidth: 600, margin: "0 auto" }}>
-        {activeTab === "menu" && (
-          <MenuSection
-            tableId={tableId}
-            onAddToCart={addToCart}
-          />
-        )}
-        {activeTab === "requests" && (
-          <RequestButtons tableId={tableId} />
-        )}
-        {activeTab === "music" && (
-          <MusicRequest tableId={tableId} />
-        )}
+      <main className="mesa-main">
+        {activeTab === "menu"     && <MenuSection    tableId={tableId} onAddToCart={addToCart} />}
+        {activeTab === "requests" && <RequestButtons tableId={tableId} />}
+        {activeTab === "music"    && <MusicRequest   tableId={tableId} />}
       </main>
 
-      {/* Carrito (se desliza desde abajo) */}
       {cartOpen && (
         <CartDrawer
           cart={cart}
@@ -164,7 +106,6 @@ export default function MesaPage({ params }) {
           onClose={() => setCartOpen(false)}
         />
       )}
-
     </div>
   )
 }

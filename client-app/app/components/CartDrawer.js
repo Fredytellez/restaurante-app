@@ -45,140 +45,46 @@ export default function CartDrawer({ cart, setCart, tableId, onClose }) {
 
   return (
     // Fondo oscuro detrás del carrito
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed", inset: 0,
-        background: "rgba(0,0,0,0.5)",
-        zIndex: 200,
-        display: "flex",
-        alignItems: "flex-end"
-      }}
-    >
-      {/* Panel del carrito */}
-      <div
-        onClick={e => e.stopPropagation()} // evita cerrar al tocar dentro
-        style={{
-          background: "white",
-          width: "100%",
-          maxHeight: "80vh",
-          borderRadius: "20px 20px 0 0",
-          padding: 24,
-          overflowY: "auto"
-        }}
-      >
-        <h2 style={{ margin: "0 0 20px", fontSize: 20 }}>Tu pedido</h2>
+    <div className="cart-overlay" onClick={onClose}>
+      <div className="cart-panel" onClick={e => e.stopPropagation()}>
 
         {sent ? (
-          <div style={{ textAlign: "center", padding: "40px 0" }}>
-            <p style={{ fontSize: 48 }}>✅</p>
-            <p style={{ fontWeight: 600, fontSize: 18 }}>
-              ¡Pedido enviado!
-            </p>
-            <p style={{ color: "#888" }}>
-              En breve lo estamos preparando
-            </p>
-            <button
-              onClick={onClose}
-              style={{
-                marginTop: 16,
-                background: "#e63946",
-                color: "white",
-                border: "none",
-                borderRadius: 8,
-                padding: "12px 32px",
-                fontSize: 16,
-                cursor: "pointer"
-              }}
-            >
-              Cerrar
-            </button>
+          <div className="cart-success">
+            <div className="cart-success__icon">✅</div>
+            <p className="cart-success__title">¡Pedido enviado!</p>
+            <p className="cart-success__text">En breve lo estamos preparando</p>
+            <button className="cart-success__btn" onClick={onClose}>Cerrar</button>
           </div>
         ) : (
           <>
+            <h2 className="cart-panel__title">Tu pedido</h2>
+
             {cart.map(item => (
-              <div
-                key={item.id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "12px 0",
-                  borderBottom: "1px solid #eee"
-                }}
-              >
-                <span style={{ flex: 1, fontWeight: 500 }}>{item.name}</span>
-
-                {/* Controles de cantidad */}
-                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <button
-                    onClick={() => updateQty(item.id, -1)}
-                    style={{
-                      width: 28, height: 28,
-                      borderRadius: "50%",
-                      border: "1px solid #ddd",
-                      background: "white",
-                      cursor: "pointer",
-                      fontSize: 16
-                    }}
-                  >−</button>
-                  <span style={{ minWidth: 20, textAlign: "center" }}>
-                    {item.quantity}
-                  </span>
-                  <button
-                    onClick={() => updateQty(item.id, 1)}
-                    style={{
-                      width: 28, height: 28,
-                      borderRadius: "50%",
-                      border: "1px solid #ddd",
-                      background: "white",
-                      cursor: "pointer",
-                      fontSize: 16
-                    }}
-                  >+</button>
+              <div key={item.id} className="cart-item">
+                <span className="cart-item__name">{item.name}</span>
+                <div className="cart-item__controls">
+                  <button className="cart-item__qty-btn" onClick={() => updateQty(item.id, -1)}>−</button>
+                  <span className="cart-item__qty">{item.quantity}</span>
+                  <button className="cart-item__qty-btn" onClick={() => updateQty(item.id, 1)}>+</button>
                 </div>
-
-                <span style={{
-                  minWidth: 70,
-                  textAlign: "right",
-                  fontWeight: 600,
-                  color: "#e63946"
-                }}>
-                  ${(item.price * item.quantity).toFixed(2)}
+                <span className="cart-item__price">
+                  ${(item.price * item.quantity).toLocaleString()}
                 </span>
               </div>
             ))}
 
-            {/* Total y botón de enviar */}
-            <div style={{ marginTop: 20 }}>
-              <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontWeight: 700,
-                fontSize: 18,
-                marginBottom: 16
-              }}>
-                <span>Total</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
-              <button
-                onClick={sendOrder}
-                disabled={sending || cart.length === 0}
-                style={{
-                  width: "100%",
-                  padding: 16,
-                  background: cart.length === 0 ? "#ccc" : "#e63946",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 12,
-                  fontSize: 16,
-                  fontWeight: 600,
-                  cursor: cart.length === 0 ? "not-allowed" : "pointer"
-                }}
-              >
-                {sending ? "Enviando..." : "Enviar pedido"}
-              </button>
+            <div className="cart-total">
+              <span>Total</span>
+              <span className="cart-total__amount">${total.toLocaleString()}</span>
             </div>
+
+            <button
+              className="cart-submit-btn"
+              onClick={sendOrder}
+              disabled={sending || cart.length === 0}
+            >
+              {sending ? "Enviando..." : "Enviar pedido"}
+            </button>
           </>
         )}
       </div>
