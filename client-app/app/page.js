@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation"
-redirect("/mesa/1")
+export default function Home() {
+  redirect("/mesa/1")
 /* export default function Home() {
   return (
     <div style={{
