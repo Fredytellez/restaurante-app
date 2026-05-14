@@ -6,7 +6,7 @@ import axios from "axios"
 // La URL de tu backend local
 /* const BACKEND_URL = "http://localhost:4000" */
 // servidor en render 
-const BACKEND_URL = "https://barlink-backend.onrender.com"
+const BACKEND_URL = "https://barlink-backend.onrender.com" || "http://localhost:4000"
 
 const REQUESTS = [
   { type: "waiter",   label: "Llamar mesero",  icon: "🔔", color: "#e63946" },
