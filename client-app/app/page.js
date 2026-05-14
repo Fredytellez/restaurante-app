@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
-
-export default function Home() {
+redirect("/mesa/1")
+/* export default function Home() {
   return (
     <div style={{
       minHeight: "100vh",
@@ -20,5 +20,5 @@ export default function Home() {
         Escanea el QR de tu mesa para comenzar
       </p>
     </div>
-  )
+  ) */
 }
