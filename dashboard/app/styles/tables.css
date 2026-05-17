@@ -1,0 +1,64 @@
+/* ── Card mesa ───────────────────────────── */
+.table-card {
+  background: var(--bl-bg2);
+  border: 1px solid var(--bl-border);
+  border-radius: var(--bl-radius);
+  padding: 20px;
+  text-align: center;
+  transition: var(--bl-transition);
+}
+
+.table-card:hover {
+  border-color: var(--bl-purple);
+  box-shadow: var(--bl-shadow);
+}
+
+.table-card__icon   { font-size: 36px; margin-bottom: 8px; }
+.table-card__number { font-size: 18px; font-weight: 700; color: var(--bl-white); margin: 0 0 4px; }
+.table-card__cap    { font-size: 13px; color: var(--bl-muted); margin: 0 0 14px; }
+
+/* ── Badge estado ────────────────────────── */
+.table-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.table-badge--available { background: rgba(42,157,143,0.15);  color: #2a9d8f; }
+.table-badge--occupied  { background: rgba(230,57,70,0.15);   color: #e63946; }
+.table-badge--reserved  { background: rgba(233,196,106,0.15); color: #e9c46a; }
+.table-badge--cleaning  { background: rgba(69,123,157,0.15);  color: #457b9d; }
+
+/* ── Select estado ───────────────────────── */
+.table-select {
+  width: 100%;
+  padding: 8px 10px;
+  background: var(--bl-bg3);
+  border: 1px solid var(--bl-border);
+  border-radius: 8px;
+  color: var(--bl-white);
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition: var(--bl-transition);
+}
+
+.table-select:focus {
+  border-color: var(--bl-purple);
+}
+
+/* ── Grid de mesas ───────────────────────── */
+.tables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 576px) {
+  .tables-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

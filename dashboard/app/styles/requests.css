@@ -1,0 +1,102 @@
+/* ── Card solicitud ──────────────────────── */
+.req-card {
+  background: var(--bl-bg2);
+  border: 1px solid var(--bl-border);
+  border-radius: var(--bl-radius);
+  padding: 20px;
+  transition: var(--bl-transition);
+}
+
+.req-card:hover {
+  box-shadow: var(--bl-shadow);
+}
+
+.req-card--waiter   { border-left: 4px solid var(--bl-purple); }
+.req-card--bill     { border-left: 4px solid var(--bl-cyan);   }
+.req-card--cleaning { border-left: 4px solid var(--bl-pink);   }
+.req-card--other    { border-left: 4px solid var(--bl-muted);  }
+
+/* ── Header de la card ───────────────────── */
+.req-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.req-card__type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--bl-white);
+}
+
+.req-card__icon { font-size: 22px; }
+
+/* ── Badge estado ────────────────────────── */
+.req-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.req-badge--pending  { background: rgba(244,162,97,0.15);  color: #f4a261; }
+.req-badge--assigned { background: rgba(69,123,157,0.15);  color: #457b9d; }
+.req-badge--resolved { background: rgba(42,157,143,0.15);  color: #2a9d8f; }
+
+/* ── Info ────────────────────────────────── */
+.req-card__table {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--bl-white);
+  margin: 0 0 4px;
+}
+
+.req-card__time {
+  font-size: 12px;
+  color: var(--bl-muted);
+  margin: 0 0 16px;
+}
+
+/* ── Botones ─────────────────────────────── */
+.req-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.req-btn {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--bl-transition);
+}
+
+.req-btn--assign  { background: var(--bl-info);    color: white; }
+.req-btn--resolve { background: var(--bl-success);  color: white; }
+
+.req-btn:hover { opacity: 0.85; }
+
+/* ── Card resuelta ───────────────────────── */
+.req-card--resolved-item {
+  background: var(--bl-bg2);
+  border: 1px solid var(--bl-border);
+  border-radius: var(--bl-radius);
+  padding: 14px 16px;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.req-resolved__check {
+  margin-left: auto;
+  color: var(--bl-success);
+  font-weight: 700;
+}
