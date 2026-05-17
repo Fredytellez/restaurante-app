@@ -1,0 +1,113 @@
+/* ── Card orden ──────────────────────────── */
+.order-card {
+  background: var(--bl-bg2);
+  border: 1px solid var(--bl-border);
+  border-radius: var(--bl-radius);
+  padding: 20px;
+  transition: var(--bl-transition);
+}
+
+.order-card:hover { box-shadow: var(--bl-shadow); }
+
+.order-card--pending   { border-left: 4px solid #f4a261; }
+.order-card--confirmed { border-left: 4px solid var(--bl-info);    }
+.order-card--preparing { border-left: 4px solid var(--bl-warning);  }
+.order-card--ready     { border-left: 4px solid var(--bl-success);  }
+.order-card--delivered { border-left: 4px solid var(--bl-muted);    }
+
+/* ── Header ──────────────────────────────── */
+.order-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.order-card__table {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--bl-white);
+  margin: 0 0 4px;
+}
+
+.order-card__time {
+  font-size: 12px;
+  color: var(--bl-muted);
+  margin: 0;
+}
+
+/* ── Badge estado ────────────────────────── */
+.order-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.order-badge--pending   { background: rgba(244,162,97,0.15);  color: #f4a261; }
+.order-badge--confirmed { background: rgba(69,123,157,0.15);  color: #457b9d; }
+.order-badge--preparing { background: rgba(233,196,106,0.15); color: #e9c46a; }
+.order-badge--ready     { background: rgba(42,157,143,0.15);  color: #2a9d8f; }
+.order-badge--delivered { background: rgba(136,136,170,0.15); color: #8888aa; }
+
+/* ── Items ───────────────────────────────── */
+.order-items {
+  background: var(--bl-bg3);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--bl-border);
+  color: var(--bl-white);
+}
+
+.order-item:last-child { border-bottom: none; }
+.order-item__price     { color: var(--bl-muted); }
+
+/* ── Total ───────────────────────────────── */
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 15px;
+  padding-top: 10px;
+  margin-top: 8px;
+  border-top: 1px solid var(--bl-border);
+  color: var(--bl-white);
+}
+
+.order-total__amount { color: var(--bl-purple); }
+
+/* ── Botón avanzar estado ────────────────── */
+.order-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--bl-transition);
+  color: white;
+}
+
+.order-btn:hover { opacity: 0.85; }
+
+/* ── Entregadas ──────────────────────────── */
+.order-card--done {
+  background: var(--bl-bg2);
+  border: 1px solid var(--bl-border);
+  border-radius: var(--bl-radius);
+  padding: 14px 16px;
+  opacity: 0.5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

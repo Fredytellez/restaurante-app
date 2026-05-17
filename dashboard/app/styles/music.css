@@ -1,0 +1,48 @@
+/* ── Card música ─────────────────────────── */
+.music-card {
+  background: var(--bl-bg2);
+  border: 1px solid var(--bl-border);
+  border-left: 4px solid var(--bl-purple);
+  border-radius: var(--bl-radius);
+  padding: 20px;
+  transition: var(--bl-transition);
+}
+
+.music-card:hover { box-shadow: var(--bl-shadow); }
+
+.music-card__song   { font-weight: 700; font-size: 15px; color: var(--bl-white); margin: 0 0 4px; }
+.music-card__artist { font-size: 13px; color: var(--bl-muted); margin: 0 0 4px; }
+.music-card__meta   { font-size: 12px; color: var(--bl-muted); margin: 0 0 16px; }
+
+/* ── Botones ─────────────────────────────── */
+.music-card__actions { display: flex; gap: 8px; }
+
+.music-btn {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--bl-transition);
+}
+
+.music-btn--play   { background: var(--bl-success); color: white; }
+.music-btn--reject { background: var(--bl-bg3); color: var(--bl-muted); border: 1px solid var(--bl-border); }
+.music-btn:hover   { opacity: 0.85; }
+
+/* ── Historial ───────────────────────────── */
+.music-card--done {
+  background: var(--bl-bg2);
+  border: 1px solid var(--bl-border);
+  border-radius: var(--bl-radius);
+  padding: 14px 16px;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.music-status--playing  { color: var(--bl-success); font-size: 12px; font-weight: 600; margin-left: auto; }
+.music-status--rejected { color: var(--bl-danger);  font-size: 12px; font-weight: 600; margin-left: auto; }
