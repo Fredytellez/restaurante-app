@@ -1,6 +1,6 @@
 /* ── Card mesa ───────────────────────────── */
 .table-card {
-  background: var(--bl-bg2);
+  background: var(--bl-bg4);
   border: 1px solid var(--bl-border);
   border-radius: var(--bl-radius);
   padding: 20px;
@@ -36,10 +36,10 @@
 .table-select {
   width: 100%;
   padding: 8px 10px;
-  background: var(--bl-bg3);
+  background: var(--bl-bg4);
   border: 1px solid var(--bl-border);
   border-radius: 8px;
-  color: var(--bl-white);
+  color: var(--bl-black);
   font-size: 13px;
   cursor: pointer;
   outline: none;
