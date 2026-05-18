@@ -6,6 +6,7 @@ import RequestsPanel from "./components/RequestsPanel"
 import OrdersPanel from "./components/OrdersPanel"
 import MusicPanel from "./components/MusicPanel"
 import TablesPanel from "./components/TablesPanel"
+import Image from "next/image"
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000"
 
@@ -57,11 +58,20 @@ export default function DashboardPage() {
       {/* Header */}
       <header className="dash-header">
         <div className="d-flex justify-content-between align-items-center">
-          <div>
-            <h1 className="dash-header__brand">
-              <span>Bar</span><span>Link</span>
-            </h1>
-            <p className="dash-header__subtitle">Dashboard en tiempo real</p>
+          <div className="d-flex align-items-center gap-3">
+              <Image
+                src="/logo_dashboard.png"
+                alt="BarLink Logo"
+                width={200}
+                height={52}
+                style={{ borderRadius: "4%" }}
+              />
+              <div>
+                <h1 className="dash-header__brand">
+                  <span>Bar</span><span>Link</span>
+                </h1>
+                {/* <p className="dash-header__subtitle">Dashboard</p> */}
+              </div>
           </div>
           <div className="dash-connection">
             <div className="dash-connection__dot"
@@ -69,7 +79,7 @@ export default function DashboardPage() {
             />
             <span>{connected ? "Conectado" : "Desconectado"}</span>
           </div>
-        </div>
+          </div>
       </header>
 
       {/* Tabs */}
