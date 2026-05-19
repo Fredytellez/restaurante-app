@@ -7,6 +7,7 @@ import MenuSection from "../../components/MenuSection"
 import CartDrawer from "../../components/CartDrawer"
 import RequestButtons from "../../components/RequestButtons"
 import MusicRequest from "../../components/MusicRequest"
+import AboutSection from "../../components/AboutSection"
 
 // La URL de tu backend local
 /* const BACKEND_URL = "http://localhost:4000" */
@@ -83,6 +84,7 @@ export default function MesaPage() {
           { key: "menu",     label: "🍽️ Menú"       },
           { key: "requests", label: "🔔 Solicitudes" },
           { key: "music",    label: "🎵 Música"      },
+          { key: "about",    label: "👥 Nosotros"     },
         ].map(tab => (
           <button
             key={tab.key}
@@ -98,6 +100,7 @@ export default function MesaPage() {
         {activeTab === "menu"     && <MenuSection    tableId={tableId} onAddToCart={addToCart} />}
         {activeTab === "requests" && <RequestButtons tableId={tableId} />}
         {activeTab === "music"    && <MusicRequest   tableId={tableId} />}
+        {activeTab === "about" && <AboutSection />}
       </main>
 
       {cartOpen && (
