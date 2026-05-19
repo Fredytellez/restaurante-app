@@ -26,8 +26,26 @@ console.log("tablesRouter:",   typeof tablesRouter) */
 const app    = express()
 const server = http.createServer(app)
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://barlink-client-personal.vercel.app",
+  "https://barlink-dashboard.vercel.app",
+  "https://barlink-client.vercel.app",
+]
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  credentials: true
+}))
+
 const io = new Server(server, {
-  cors: { origin: "*" }
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 })
 
 // ── Middlewares globales ──────────────────────────
