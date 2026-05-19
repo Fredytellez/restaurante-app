@@ -4,6 +4,7 @@ import './styles/menu.css'
 import './styles/cart.css'
 import './styles/requests.css'
 import './styles/music.css'
+import './styles/about.css'
 
 export default function RootLayout({ children }) {
   return (
